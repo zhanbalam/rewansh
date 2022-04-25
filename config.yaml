@@ -1,0 +1,25 @@
+ping:
+  active: 5
+  idle: 20
+  pong_wait: 10
+
+min_uptime: 30
+
+servers:
+  - ws_url: host.docker.internal:8080
+    is_active: true
+    #command: curl -X PUT $CONSUL_ADDR/v1/kv/ipool/ip/leased/10.2.0.1/router?token=dummy_token -d'router_public_ip:port'
+    #command: consul kv put ipool/ip/leased/10.2.0.1/router router2_public_ip:port
+    command: ["echo", "Switched to router 1!"]
+  
+  - ws_url: host.docker.internal:8081
+    #command: curl -X PUT $CONSUL_ADDR/v1/kv/ipool/ip/leased/10.2.0.2/router?token=dummy_token -d'router_public_ip:port'
+    #command: consul kv put ipool/ip/leased/10.2.0.2/router router2_public_ip:port
+    command: ["echo", "Switched to router 2!"]
+
+  - ws_url: host.docker.internal:8082
+    #command: curl -X PUT $CONSUL_ADDR/v1/kv/ipool/ip/leased/10.2.0.3/router?token=dummy_token -d'router_public_ip:port'
+    #command: consul kv put ipool/ip/leased/10.2.0.3/router router2_public_ip:port
+    command: ["echo", "Switched to router 3!"]
+
+# TODO: state_file: ./rewansh.state
